@@ -1,3 +1,5 @@
-# Report
+# Project Report
 
-Place the project report PDF and any supporting documents in this folder.
+The report PDF is currently at the repository root: [Robotic_Arm_Project_Report.pdf](../Robotic_Arm_Project_Report.pdf).
+
+Keep reports and supporting documents in this folder.

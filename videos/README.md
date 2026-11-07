@@ -1,3 +1,3 @@
 # Videos
 
-Place project demonstrations and working videos in this folder.
+Project images and videos are being consolidated under [`media/`](../media/). Add new videos there, preferably in `media/videos/`.
