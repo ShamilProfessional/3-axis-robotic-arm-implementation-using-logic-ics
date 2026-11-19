@@ -41,7 +41,16 @@ The motor must hold its current position when neither button is pressed. It must
 
 The 74HC193 has separate count-up and count-down clock inputs. The control logic sends clock pulses to the correct input for the selected direction and prevents pulses when the motor must hold its position.
 
-<!-- Add the 74HC193 datasheet or counter-input diagram here. Example: ![74HC193 counter inputs](media/images/74hc193-counter-inputs.png) -->
+### 74HC193 Function Table
+
+| Clock UP | Clock Down | Reset | Parallel Load | Function |
+|:---:|:---:|:---:|:---:|:---|
+| ↑ | H | L | H | Count up |
+| H | ↑ | L | H | Count down |
+| X | X | H | X | Reset |
+| X | X | L | L | Load preset inputs |
+
+**Logic level key:**  H = High voltage level; L = Low voltage level; X = Don’t care; ↑ = Transition from low to high level.
 
 ### Control Logic Design
 
