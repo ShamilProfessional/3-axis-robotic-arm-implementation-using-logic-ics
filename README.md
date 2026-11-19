@@ -67,7 +67,7 @@ $$
 
 The control logic uses 74HC08 AND gates and 74HC04 NOT gates.
 
-![Motor direction control circuit](media/images/control-logic-1.png)
+![Motor direction control circuit](media/images/control-logic-1.svg)
 
 <!-- Add the second control-logic image here. Example: ![Control logic diagram 2](media/images/control-logic-2.png) -->
 
