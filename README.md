@@ -69,6 +69,17 @@ The control logic uses 74HC08 AND gates and 74HC04 NOT gates.
 
 ![Motor direction control circuit](media/images/control-logic-1.jpg)
 
+### Direction and Pulse-Gating Truth Table
+
+| Forward | Reverse | CPU | CPD | Mode |
+|:---:|:---:|:---:|:---:|:---|
+| 0 | 0 | 1 | 1 | Stop |
+| 0 | 1 | 1 | CLK | Reverse |
+| 1 | 0 | CLK | 1 | Forward |
+| 1 | 1 | 1 | 1 | Interlock (lockout) |
+
+When both direction inputs are active, the lockout mode prevents the counter from receiving a clock pulse in either direction.
+
 <!-- Add the second control-logic image here. Example: ![Control logic diagram 2](media/images/control-logic-2.png) -->
 
 ## Push Buttons
