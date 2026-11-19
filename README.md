@@ -50,15 +50,26 @@ The 74HC193 has separate count-up and count-down clock inputs. The control logic
 | X | X | H | X | Reset |
 | X | X | L | L | Load preset inputs |
 
-**Logic level key:**  H = High voltage level; L = Low voltage level; X = Don’t care; ↑ = Transition from low to high level.
+**Logic level key:** H = High voltage level; L = Low voltage level; X = Don’t care; ↑ = Transition from low to high level.
 
 ### Control Logic Design
+
+In the equations below, `F` and `R` are the forward and reverse control signals. `F_EN` and `R_EN` enable forward and reverse counting. `CPU` and `CPD` are the 74HC193 count-up and count-down clock inputs. `CLK` is the common clock signal. The overbar indicates logical NOT.
+
+$$
+\begin{aligned}
+F_{EN} &= F \cdot \overline{R} \\
+R_{EN} &= R \cdot \overline{F} \\
+CPU &= \overline{\left(\overline{CLK} \cdot F_{EN}\right)} \\
+CPD &= \overline{\left(\overline{CLK} \cdot R_{EN}\right)}
+\end{aligned}
+$$
+
+The control logic uses 74HC08 AND gates and 74HC04 NOT gates.
 
 <!-- Add the first control-logic image here. Example: ![Control logic diagram 1](media/images/control-logic-1.png) -->
 
 <!-- Add the second control-logic image here. Example: ![Control logic diagram 2](media/images/control-logic-2.png) -->
-
-The control logic uses 74HC08 AND gates and 74HC04 NOT gates.
 
 ## Push Buttons
 
