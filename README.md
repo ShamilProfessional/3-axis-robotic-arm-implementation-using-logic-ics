@@ -98,7 +98,7 @@ The control circuit is repeated for each motor. This lets you control each joint
 
 ## Final Result
 
-<!-- Add a photo of the completed robotic arm here. Example: ![Completed 3-axis robotic arm](media/images/final-result.jpg) -->
+![Completed 3-axis robotic arm](media/images/finalresult.jpg)
 
 ## Project Report
 
