@@ -25,6 +25,8 @@ The 28BYJ-48 has four phase inputs. In the table, `1` means that the phase is en
 
 Repeat the steps from 1 to 4 for one direction. Use the reverse order, 4 to 1, for the other direction. The phase labels are logical labels. Check the motor and driver wiring before connecting the circuit. Use a suitable driver stage for the motor coil current; do not connect the motor coils directly to logic IC outputs.
 
+Three ULN2003 IC driver circuits are used to drive the three stepper motors.
+
 Each motor has four coils. The circuit energises the coils in order to rotate the motor. Reversing the order reverses the motor direction.
 
 ## Clock and Step Pattern
