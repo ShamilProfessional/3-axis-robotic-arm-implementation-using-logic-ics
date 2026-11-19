@@ -82,6 +82,10 @@ When both direction inputs are active, the lockout mode prevents the counter fro
 
 <!-- Add the second control-logic image here. Example: ![Control logic diagram 2](media/images/control-logic-2.png) -->
 
+## Clock Frequency and Motor Speed
+
+The NE555 timer IC is configured in astable mode. A potentiometer is used to vary the clock frequency and, consequently, the rotational speed of the stepper motors. Refer to the schematic for more details.
+
 ## Push Buttons
 
 The circuit uses 6 × 6 mm, four-pin push buttons. The buttons use active-low signals. A 74HC14 Schmitt-trigger IC debounces the button signals and inverts them to active-high signals for the control logic.
