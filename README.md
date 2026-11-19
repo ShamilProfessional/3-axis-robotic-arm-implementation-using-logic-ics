@@ -94,7 +94,7 @@ The circuit uses 6 × 6 mm, four-pin push buttons. The buttons use active-low si
 
 The control circuit is repeated for each motor. This lets you control each joint separately. The schematic shows the full circuit and the shared decoder arrangement.
 
-<!-- Add the full schematic here. Example: ![Full robotic arm control schematic](schematics/full-schematic.png) -->
+[Open the robotic arm control-board schematic PDF](schematics/Schematic_RoboticArmControlBoard_2026-11-07.pdf)
 
 ## Final Result
 
