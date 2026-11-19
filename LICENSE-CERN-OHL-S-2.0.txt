@@ -1,0 +1,8 @@
+CERN Open Hardware Licence Version 2 - Strongly Reciprocal
+
+License URL: https://ohwr.org/project/cernohl/-/raw/master/licences/cern_ohl_s_v2.txt
+SPDX identifier: CERN-OHL-S-2.0
+
+Copyright © Mohammed Shamil K K
+
+This file identifies the license for hardware and circuit-design works in this repository. The complete, authoritative license terms are available at the URL above.

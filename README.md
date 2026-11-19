@@ -1,0 +1,130 @@
+# 3-Axis Robotic Arm Using Logic ICs
+
+## Introduction
+
+This project uses logic ICs to control a three-axis robotic arm with 28BYJ-48 stepper motors.
+
+## What the Project Does
+
+Use the UP and DOWN push buttons to control each joint. Each motor moves independently. The UP button moves its motor clockwise. The DOWN button moves it counter-clockwise.
+
+## How It Works
+
+The control circuit generates a four-bit pattern for the motor coils. The pattern uses wave drive, also called one-phase-on drive. It energises one coil at a time.
+
+The 28BYJ-48 has four phase inputs. In the table, `1` means that the phase is energised and `0` means that it is off. The order of the phases depends on the motor wiring. If the motor turns in the opposite direction, reverse the sequence or swap the direction control.
+
+### Wave-Drive Truth Table
+
+| Step | A | B | C | D |
+|---:|---:|---:|---:|---:|
+| 1 | 1 | 0 | 0 | 0 |
+| 2 | 0 | 1 | 0 | 0 |
+| 3 | 0 | 0 | 1 | 0 |
+| 4 | 0 | 0 | 0 | 1 |
+
+Repeat the steps from 1 to 4 for one direction. Use the reverse order, 4 to 1, for the other direction. The phase labels are logical labels. Check the motor and driver wiring before connecting the circuit. Use a suitable driver stage for the motor coil current; do not connect the motor coils directly to logic IC outputs.
+
+Three ULN2003 IC driver circuits are used to drive the three stepper motors.
+
+Each motor has four coils. The circuit energises the coils in order to rotate the motor. Reversing the order reverses the motor direction.
+
+## Clock and Step Pattern
+
+A 74HC193 four-bit up/down counter provides the step count. The two least significant bits select one of four states. A 74HC139 two-to-four decoder changes those states into the coil pattern. A NE555 timer provides the common clock.
+
+The 74HC139 outputs are active low. NOT gates invert these outputs where the circuit needs active-high signals. Two 74HC139 ICs can provide the decoder outputs for all three motors because each IC contains two decoders.
+
+## Direction and Button Control
+
+The motor must hold its current position when neither button is pressed. It must move clockwise when UP is pressed and counter-clockwise when DOWN is pressed. It must hold its position when both buttons are pressed.
+
+The 74HC193 has separate count-up and count-down clock inputs. The control logic sends clock pulses to the correct input for the selected direction and prevents pulses when the motor must hold its position.
+
+### 74HC193 Function Table
+
+| Clock UP | Clock Down | Reset | Parallel Load | Function |
+|:---:|:---:|:---:|:---:|:---|
+| ↑ | H | L | H | Count up |
+| H | ↑ | L | H | Count down |
+| X | X | H | X | Reset |
+| X | X | L | L | Load preset inputs |
+
+**Logic level key:** H = High voltage level; L = Low voltage level; X = Don’t care; ↑ = Transition from low to high level.
+
+### Control Logic Design
+
+In the equations below, `F` and `R` are the forward and reverse control signals. `F_EN` and `R_EN` enable forward and reverse counting. `CPU` and `CPD` are the 74HC193 count-up and count-down clock inputs. `CLK` is the common clock signal. The overbar indicates logical NOT.
+
+$$
+\begin{aligned}
+F_{EN} &= F \cdot \overline{R} \\
+R_{EN} &= R \cdot \overline{F} \\
+CPU &= \overline{\left(\overline{CLK} \cdot F_{EN}\right)} \\
+CPD &= \overline{\left(\overline{CLK} \cdot R_{EN}\right)}
+\end{aligned}
+$$
+
+The control logic uses 74HC08 AND gates and 74HC04 NOT gates.
+
+![Motor direction control circuit](media/images/control-logic-1.jpg)
+
+### Direction and Pulse-Gating Truth Table
+
+| Forward | Reverse | CPU | CPD | Mode |
+|:---:|:---:|:---:|:---:|:---|
+| 0 | 0 | 1 | 1 | Stop |
+| 0 | 1 | 1 | CLK | Reverse |
+| 1 | 0 | CLK | 1 | Forward |
+| 1 | 1 | 1 | 1 | Interlock (lockout) |
+
+When both direction inputs are active, the lockout mode prevents the counter from receiving a clock pulse in either direction.
+
+<!-- Add the second control-logic image here. Example: ![Control logic diagram 2](media/images/control-logic-2.png) -->
+
+## Clock Frequency and Motor Speed
+
+The NE555 timer IC is configured in astable mode. A potentiometer is used to vary the clock frequency and, consequently, the rotational speed of the stepper motors. Refer to the schematic for more details.
+
+## Push Buttons
+
+The circuit uses 6 × 6 mm, four-pin push buttons. The buttons use active-low signals. A 74HC14 Schmitt-trigger IC debounces the button signals and inverts them to active-high signals for the control logic.
+
+## Three-Motor Circuit
+
+The control circuit is repeated for each motor. This lets you control each joint separately. The schematic shows the full circuit and the shared decoder arrangement.
+
+[Open the robotic arm control-board schematic PDF](schematics/Schematic_RoboticArmControlBoard_2026-11-07.pdf)
+
+## Final Result
+
+![Completed 3-axis robotic arm](media/images/finalresult.jpg)
+
+## Project Report
+
+[Open the project report PDF](Robotic_Arm_Project_Report.pdf)
+
+## Project Media
+
+- [Images folder](media/images/)
+- [Videos folder](media/videos/)
+
+## 3D Files
+
+Soon to be added.
+
+## Credits
+
+### Group Members
+
+- Mohammed Shamil K K (Leader)
+- Hani Sakir KP
+- Lukman
+- Nufail Ismail PP
+
+### Project Coordinator
+
+**Mr. Rejiram R.**  
+Project Coordinator  
+Assistant Professor, Dept. of ECE  
+MES College of Engineering Kuttippuram

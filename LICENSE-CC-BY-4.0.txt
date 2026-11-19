@@ -1,0 +1,8 @@
+Creative Commons Attribution 4.0 International
+
+License URL: https://creativecommons.org/licenses/by/4.0/legalcode
+SPDX identifier: CC-BY-4.0
+
+Copyright © 2026 Mohammed Shamil K K, Hani Sakir KP, Lukman, and Nufail Ismail PP
+
+This file identifies the license for project documentation and media in this repository. The complete, authoritative license terms are available at the URL above.
